@@ -1,8 +1,8 @@
 package entity;
 
 public enum Type {
-    Formal,
-    ContextBind,
+    Zero,
+    ContextBound,
     ContextFree,
-    Regular
+    RegularRight
 }

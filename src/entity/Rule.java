@@ -1,6 +1,8 @@
 package entity;
 
-public class Rule {
+import java.io.Serializable;
+
+public class Rule implements Serializable {
     private char[] from;
     private char[] to;
 
@@ -8,11 +10,19 @@ public class Rule {
         return from;
     }
 
+    public void setFrom(char[] from) {
+        this.from = from;
+    }
+
     public char[] getTo() {
         return to;
     }
 
-//    @Override
+    public void setTo(char[] to) {
+        this.to = to;
+    }
+
+    //    @Override
 //    public String toString() {
 //        StringBuilder builder = new StringBuilder();
 //        builder
