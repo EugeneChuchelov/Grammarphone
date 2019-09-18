@@ -1,17 +1,14 @@
 package entity;
 
-import java.util.Collection;
-import java.util.List;
-
 public class Rule {
-    private List<Object> from;
-    private List<Object> to;
+    private char[] from;
+    private char[] to;
 
-    public List<Object> getFrom() {
+    public char[] getFrom() {
         return from;
     }
 
-    public List<Object> getTo() {
+    public char[] getTo() {
         return to;
     }
 
