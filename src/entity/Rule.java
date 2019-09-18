@@ -1,32 +1,25 @@
 package entity;
 
-import java.util.Collection;
+import java.io.Serializable;
 import java.util.List;
 
-public class Rule {
-    private List<Object> from;
-    private List<Object> to;
+public class Rule implements Serializable {
+    private List<Character> from;
+    private List<Character> to;
 
-    public List<Object> getFrom() {
+    public List<Character> getFrom() {
         return from;
     }
 
-    public List<Object> getTo() {
+    public void setFrom(List<Character> from) {
+        this.from = from;
+    }
+
+    public List<Character> getTo() {
         return to;
     }
 
-//    @Override
-//    public String toString() {
-//        StringBuilder builder = new StringBuilder();
-//        builder
-//                .append(from)
-//                .append(" -> ");
-//        for(String s : to){
-//            builder
-//                    .append(s)
-//                    .append('|');
-//        }
-//        builder.deleteCharAt(builder.lastIndexOf("|"));
-//        return builder.toString();
-//    }
+    public void setTo(List<Character> to) {
+        this.to = to;
+    }
 }

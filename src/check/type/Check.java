@@ -1,24 +1,37 @@
 package check.type;
 
 import entity.Grammar;
-import entity.Rule;
-import entity.symbol.NotTerminal;
+import entity.Type;
 
-import java.util.Collection;
-import java.util.Set;
+import static check.type.CheckContextBound.isContextBound;
+import static check.type.CheckContextFree.isContextFree;
+import static check.type.CheckRegular.isRegular;
 
 public class Check {
+    public static Type check(Grammar grammar) {
+        if(!preCheck(grammar))
+            return Type.Defected;
 
-    private boolean isRegular(Grammar grammar){
-
+        if(isContextBound(grammar)){
+            if(isContextFree(grammar)){
+                if(isRegular(grammar)){
+                    return Type.Regular;
+                } else {
+                    return Type.ContextFree;
+                }
+            } else {
+                return Type.ContextBound;
+            }
+        } else {
+            return Type.Zero;
+        }
     }
 
-    private boolean isLeftNotTerminal(Rule rule, Set<NotTerminal> notTerminal){
-        if(rule.getFrom().size() != 1)
-            return false;
-        if(notTerminal.contains(rule.getFrom().get(0))){
-            return true;
+    private static boolean preCheck(Grammar grammar) {
+        for(Character character : grammar.getNotTerminal()){
+            if(grammar.getTerminal().contains(character))
+                return false;
         }
-        return false;
+        return true;
     }
 }
