@@ -1,26 +1,27 @@
 package entity;
 
 import java.io.Serializable;
+import java.util.List;
 import java.util.Set;
 
 public class Grammar implements Serializable {
-    private char[] terminal;
-    private char[] notTerminal;
+    private List<Character> terminal;
+    private List<Character> notTerminal;
     private Set<Rule> rules;
 
-    public char[] getTerminal() {
+    public List<Character> getTerminal() {
         return terminal;
     }
 
-    public void setTerminal(char[] terminal) {
+    public void setTerminal(List<Character> terminal) {
         this.terminal = terminal;
     }
 
-    public char[] getNotTerminal() {
+    public List<Character> getNotTerminal() {
         return notTerminal;
     }
 
-    public void setNotTerminal(char[] notTerminal) {
+    public void setNotTerminal(List<Character> notTerminal) {
         this.notTerminal = notTerminal;
     }
 

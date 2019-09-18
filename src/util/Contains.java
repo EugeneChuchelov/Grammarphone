@@ -1,7 +1,7 @@
 package util;
 
 public class Contains {
-    //Is 'contained' contained in 'contains'
+    //Is 'contained' contained in 'containsAll'
     public static boolean contains(char[] contains, char contained){
         for(char c : contains){
             if(c == contained)
@@ -10,8 +10,8 @@ public class Contains {
         return false;
     }
 
-    //Is all chars from 'contained' contained in 'contains'
-    public static boolean contains(char[] contains, char[] contained){
+    //Is all chars from 'contained' contained in 'containsAll'
+    public static boolean containsAll(char[] contains, char[] contained){
         for(char c : contained){
             if(!contains(contains, c)){
                 return false;

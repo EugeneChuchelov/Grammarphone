@@ -4,5 +4,6 @@ public enum Type {
     Zero,
     ContextBound,
     ContextFree,
-    RegularRight
+    Regular,
+    Defected
 }

@@ -9,13 +9,29 @@ import static check.type.CheckRegular.isRegular;
 
 public class Check {
     public static Type check(Grammar grammar) {
-        if (isRegular(grammar))
-            return Type.RegularRight;
-        else if (isContextFree(grammar))
-            return Type.ContextFree;
-        else if (isContextBound(grammar))
-            return Type.ContextBound;
-        else
+        if(!preCheck(grammar))
+            return Type.Defected;
+
+        if(isContextBound(grammar)){
+            if(isContextFree(grammar)){
+                if(isRegular(grammar)){
+                    return Type.Regular;
+                } else {
+                    return Type.ContextFree;
+                }
+            } else {
+                return Type.ContextBound;
+            }
+        } else {
             return Type.Zero;
+        }
+    }
+
+    private static boolean preCheck(Grammar grammar) {
+        for(Character character : grammar.getNotTerminal()){
+            if(grammar.getTerminal().contains(character))
+                return false;
+        }
+        return true;
     }
 }
