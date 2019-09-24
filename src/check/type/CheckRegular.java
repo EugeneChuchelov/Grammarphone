@@ -25,16 +25,10 @@ public class CheckRegular {
         if (rule.getFrom().size() != 1)
             return false;
 
-        boolean d = notTerminal.containsAll(rule.getFrom());
-
         return notTerminal.containsAll(rule.getFrom());
     }
 
     private static boolean isRightEndsWithNotTerminal(Rule rule, List<Character> notTerminal) {
-        boolean d1 = notTerminal.contains(rule.getTo().get(rule.getTo().size() - 1))
-                && rule.getTo().indexOf(rule.getTo().get(rule.getTo().size() - 1)) == rule.getTo().size() - 1;
-        boolean d2 = notTerminal.contains(rule.getTo().get(rule.getTo().size() - 1));
-
         if (rule.getTo().size() > 1)
             return notTerminal.contains(rule.getTo().get(rule.getTo().size() - 1))
                     && rule.getTo().indexOf(rule.getTo().get(rule.getTo().size() - 1)) == rule.getTo().size() - 1;
@@ -43,10 +37,6 @@ public class CheckRegular {
     }
 
     private static boolean isRightBeginsWithNotTerminal(Rule rule, List<Character> notTerminal) {
-        boolean d1 = notTerminal.contains(rule.getTo().get(0))
-                && rule.getTo().lastIndexOf(rule.getTo().get(0)) == 0;
-        boolean d2 = notTerminal.contains(rule.getTo().get(0));
-
         if (rule.getTo().size() > 1)
             return notTerminal.contains(rule.getTo().get(0))
                     && rule.getTo().lastIndexOf(rule.getTo().get(0)) == 0;
@@ -55,8 +45,6 @@ public class CheckRegular {
     }
 
     private static boolean isRightContainsOnlyTerminals(Rule rule, List<Character> terminal) {
-        boolean d = terminal.containsAll(rule.getTo());
-
         return terminal.containsAll(rule.getTo());
     }
 }

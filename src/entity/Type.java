@@ -2,7 +2,7 @@ package entity;
 
 public enum Type {
     Zero,
-    ContextBound,
+    ContextDependent,
     ContextFree,
     Regular,
     Defected

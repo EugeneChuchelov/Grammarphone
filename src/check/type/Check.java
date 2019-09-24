@@ -3,7 +3,7 @@ package check.type;
 import entity.Grammar;
 import entity.Type;
 
-import static check.type.CheckContextBound.isContextBound;
+import static check.type.CheckContextDependent.isContextDependent;
 import static check.type.CheckContextFree.isContextFree;
 import static check.type.CheckRegular.isRegular;
 
@@ -12,7 +12,7 @@ public class Check {
         if(!preCheck(grammar))
             return Type.Defected;
 
-        if(isContextBound(grammar)){
+        if(isContextDependent(grammar)){
             if(isContextFree(grammar)){
                 if(isRegular(grammar)){
                     return Type.Regular;
@@ -20,7 +20,7 @@ public class Check {
                     return Type.ContextFree;
                 }
             } else {
-                return Type.ContextBound;
+                return Type.ContextDependent;
             }
         } else {
             return Type.Zero;
