@@ -15,7 +15,7 @@ public class GrammarInput {
         System.out.println("Нетерминальные символы (без пробелов, через \',\')");
         String notTerminal = scanner.nextLine();
 
-        System.out.println("Правила (в формате A->B, без пробелов, через \',\')");
+        System.out.println("Правила (в формате A->B|C, без пробелов, через \',\')");
         String rules = scanner.nextLine();
 
         Grammar grammar = new Grammar();
@@ -42,21 +42,28 @@ public class GrammarInput {
         Set<Rule> ruleSet = new HashSet<>();
 
         for(String ruleString : splitRules){
+            Rule rule = null;
+
             String[] parts = ruleString.split("->");
+            String[] rightParts = parts[1].split("[|]");
+
             LinkedList<Character> from = new LinkedList<>();
             for(char c : parts[0].toCharArray()){
                 from.add(c);
             }
-            LinkedList<Character> to = new LinkedList<>();
-            for(char c : parts[1].toCharArray()){
-                to.add(c);
+
+            for(String right : rightParts){
+                LinkedList<Character> to = new LinkedList<>();
+                for(char c : right.toCharArray()){
+                    to.add(c);
+                }
+
+                rule = new Rule();
+                rule.setFrom(from);
+                rule.setTo(to);
+                ruleSet.add(rule);
             }
 
-            Rule rule = new Rule();
-            rule.setFrom(from);
-            rule.setTo(to);
-
-            ruleSet.add(rule);
         }
 
         return ruleSet;

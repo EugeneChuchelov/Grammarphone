@@ -15,6 +15,8 @@ import static ui.GrammarInput.input;
 
 public class Application {
     public static void main(String[] args) {
+        System.setProperty("file.encoding", "IBM437");
+
         Grammar gr = null;
 
         if(args.length > 0){
@@ -25,15 +27,41 @@ public class Application {
                 gr = input();
                 saveGrammar(args[1], gr);
             }
+            if(args[0].equals("-h")){
+                System.out.println(help());
+                System.exit(0);
+            }
         } else {
-            gr = input();
+            try{
+                gr = input();
+            } catch (Exception e){
+                System.out.println("Ошибка ввода");
+                System.exit(-1);
+            }
+
         }
 
-        Type type = check(gr);
-
+        Type type = null;
+        try {
+             type = check(gr);
+        } catch (Exception e){
+            System.out.println("Ошибка проверки");
+            System.exit(-1);
+        }
         System.out.print("Грамматика ");
         System.out.print(typeName(type));
         System.out.println(" типа");
+    }
+
+    private static String help(){
+        StringBuilder stringBuilder = new StringBuilder();
+        stringBuilder
+                .append("To load from file: ")
+                .append("-l grammarFile.json")
+                .append("\n")
+                .append("To enter from console and save to file: ")
+                .append("-s file.json");
+        return stringBuilder.toString();
     }
 
     private static void saveGrammar(String filepath, Grammar gr) {

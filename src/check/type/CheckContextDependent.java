@@ -30,7 +30,7 @@ public class CheckContextDependent {
         List<Character> fromContextLeft = rule.getFrom().subList(0, indexLeft);
         List<Character> fromContextRight = rule.getFrom().subList(indexRight + 1, rule.getFrom().size());
 
-        if(fromContextLeft.size() == 0 && fromContextRight.size() == 0)
+        if(fromContextLeft.isEmpty() && fromContextRight.isEmpty())
             return true;
 
         List<Character> toContextLeft = rule.getFrom().subList(0, fromContextLeft.size());
